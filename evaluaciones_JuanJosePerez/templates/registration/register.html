@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrarse{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 4rem auto;">
+    <h1 class="text-center">Crear Cuenta</h1>
+    <p class="text-center" style="color: var(--text-muted); margin-bottom: 2rem;">Regístrese para comenzar a gestionar calificaciones.</p>
+
+    <form method="post" class="stat-card" style="text-align: left;">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+                <small style="display: block; color: #999; font-size: 0.75rem; margin-top: 0.2rem;">{{ field.help_text }}</small>
+            {% endif %}
+            {% if field.errors %}
+                <div style="color: var(--primary-red); font-size: 0.8rem; margin-top: 0.2rem;">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Crear Cuenta</button>
+        <div class="text-center mt-4">
+            <p style="font-size: 0.9rem;">¿Ya tienes cuenta? <a href="{% url 'login' %}" style="color: var(--primary-red); font-weight: 600;">Inicia Sesión</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

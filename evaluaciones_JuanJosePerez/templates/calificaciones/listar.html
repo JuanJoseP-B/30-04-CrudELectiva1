@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Calificaciones{% endblock %}
+
+{% block content %}
+<div class="flex justify-between align-center">
+    <h1>Listado de Calificaciones</h1>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Identificación</th>
+                <th>Asignatura</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Promedio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for calificacion in calificaciones %}
+            <tr>
+                <td>{{ calificacion.nombre_estudiante }}</td>
+                <td>{{ calificacion.identificacion }}</td>
+                <td>{{ calificacion.asignatura }}</td>
+                <td>{{ calificacion.nota1 }}</td>
+                <td>{{ calificacion.nota2 }}</td>
+                <td>{{ calificacion.nota3 }}</td>
+                <td style="font-weight: 600; color: var(--primary-red);">{{ calificacion.promedio }}</td>
+                <td>
+                    <div class="flex gap-2">
+                        <a href="{% url 'editar_calificacion' calificacion.pk %}" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Editar</a>
+                        <a href="{% url 'eliminar_calificacion' calificacion.pk %}" class="btn btn-danger" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" class="text-center">No hay calificaciones registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="stat-card">
+    <span class="stat-label">Promedio General Institucional</span>
+    <span class="stat-value">{{ promedio_general }}</span>
+</div>
+{% endblock %}

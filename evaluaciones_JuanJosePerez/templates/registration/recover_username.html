@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuperar Usuario{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 4rem auto;">
+    <h1 class="text-center">Recuperar Usuario</h1>
+    <p class="text-center" style="color: var(--text-muted); margin-bottom: 2rem;">Ingrese su correo electrónico para recordar su nombre de usuario.</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div style="padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; text-align: center; background-color: #E8F5E9; color: #2E7D32;">
+            {% else %}
+                <div style="padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; text-align: center; background-color: #FFEBEE; color: #D32F2F;">
+            {% endif %}
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" class="stat-card" style="text-align: left;">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Validar Identidad</button>
+        <div class="text-center mt-4">
+            <p style="font-size: 0.9rem;"><a href="{% url 'login' %}" style="color: var(--text-muted); text-decoration: none;">&larr; Volver al Inicio</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

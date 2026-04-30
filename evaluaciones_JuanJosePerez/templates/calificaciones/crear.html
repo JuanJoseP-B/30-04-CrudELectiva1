@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Calificación{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto;">
+    <h1 class="text-center">Registrar Nueva Calificación</h1>
+    <p class="text-center" style="color: var(--text-muted); margin-bottom: 2rem;">Ingrese los datos del estudiante y sus calificaciones.</p>
+
+    <form method="post" class="stat-card" style="text-align: left;">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <div style="color: var(--primary-red); font-size: 0.8rem; margin-top: 0.2rem;">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="flex gap-2 mt-4">
+            <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar Registro</button>
+            <a href="{% url 'listar_calificaciones' %}" class="btn btn-secondary" style="flex: 1; text-align: center;">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

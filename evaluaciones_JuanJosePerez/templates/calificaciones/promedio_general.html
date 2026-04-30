@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Estadísticas Generales{% endblock %}
+
+{% block content %}
+<div class="text-center" style="margin-top: 4rem;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem;">Estadísticas Institucionales</h1>
+    <p style="color: var(--text-muted); margin-bottom: 3rem;">Resumen de rendimiento académico global basado en los registros actuales.</p>
+
+    <div class="stat-card" style="max-width: 400px; margin: 0 auto;">
+        <span class="stat-label">Promedio de Notas Global</span>
+        <span class="stat-value" style="font-size: 5rem;">{{ promedio_general }}</span>
+        <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-muted);">Calculado dinámicamente sobre todos los estudiantes.</p>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'listar_calificaciones' %}" class="btn btn-secondary">Volver al Listado</a>
+    </div>
+</div>
+{% endblock %}

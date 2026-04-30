@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 4rem auto;">
+    <h1 class="text-center">Bienvenido</h1>
+    <p class="text-center" style="color: var(--text-muted); margin-bottom: 2rem;">Ingrese sus credenciales para acceder al sistema.</p>
+
+    <form method="post" class="stat-card" style="text-align: left;">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Entrar al Sistema</button>
+        <div class="text-center mt-4" style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <p style="font-size: 0.9rem;">¿No tienes cuenta? <a href="{% url 'register' %}" style="color: var(--primary-red); font-weight: 600;">Regístrate</a></p>
+            <p style="font-size: 0.8rem;"><a href="{% url 'password_reset' %}" style="color: var(--text-muted);">¿Olvidaste tu contraseña?</a></p>
+            <p style="font-size: 0.8rem;"><a href="{% url 'recover_username' %}" style="color: var(--text-muted);">¿Olvidaste tu usuario?</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

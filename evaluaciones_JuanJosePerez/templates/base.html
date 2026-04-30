@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Calificaciones{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="{% url 'listar_calificaciones' %}" class="logo">EVALUACIONES</a>
+            <nav class="flex gap-2">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'listar_calificaciones' %}" class="btn {% if request.resolver_match.url_name == 'listar_calificaciones' %}btn-primary{% else %}btn-secondary{% endif %}">Inicio</a>
+                    <a href="{% url 'crear_calificacion' %}" class="btn {% if request.resolver_match.url_name == 'crear_calificacion' %}btn-primary{% else %}btn-secondary{% endif %}">Registrar Nota</a>
+                    <a href="{% url 'promedio_general' %}" class="btn {% if request.resolver_match.url_name == 'promedio_general' %}btn-primary{% else %}btn-secondary{% endif %}">Estadísticas</a>
+                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn {% if request.resolver_match.url_name == 'login' %}btn-primary{% else %}btn-secondary{% endif %}">Entrar</a>
+                    <a href="{% url 'register' %}" class="btn {% if request.resolver_match.url_name == 'register' %}btn-primary{% else %}btn-secondary{% endif %}">Registrarse</a>
+                {% endif %}
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer class="mt-4 text-center">
+            <p style="color: #999; font-size: 0.8rem;">&copy; 2026 Sistema de Gestión de Calificaciones - Juan José Pérez</p>
+        </footer>
+    </div>
+</body>
+</html>

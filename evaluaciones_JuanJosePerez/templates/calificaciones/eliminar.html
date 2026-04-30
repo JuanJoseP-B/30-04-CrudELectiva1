@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Registro{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 4rem auto;" class="text-center">
+    <div class="stat-card">
+        <h1 style="color: var(--primary-red); margin-bottom: 1rem;">¿Confirmar Eliminación?</h1>
+        <p style="margin-bottom: 2rem;">Está a punto de eliminar el registro de <strong>{{ calificacion.nombre_estudiante }}</strong> en la asignatura <strong>{{ calificacion.asignatura }}</strong>. Esta acción no se puede deshacer.</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="flex gap-2">
+                <button type="submit" class="btn btn-primary" style="flex: 1; background-color: var(--primary-red);">Sí, Eliminar</button>
+                <a href="{% url 'listar_calificaciones' %}" class="btn btn-secondary" style="flex: 1;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
