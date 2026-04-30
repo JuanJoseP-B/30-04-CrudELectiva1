@@ -2,26 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "evaluaciones_JuanJosePerez/evaluaciones_JuanJosePerez/wsgi.py",
+      "src": "api/index.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles"
-      }
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "evaluaciones_JuanJosePerez/evaluaciones_JuanJosePerez/wsgi.py"
+      "dest": "api/index.py"
     }
   ]
 }
