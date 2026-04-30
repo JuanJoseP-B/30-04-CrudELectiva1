@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "evaluaciones_JuanJosePerez/wsgi.py",
+      "src": "evaluaciones_JuanJosePerez/evaluaciones_JuanJosePerez/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
     },
@@ -21,7 +21,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "evaluaciones_JuanJosePerez/wsgi.py"
+      "dest": "evaluaciones_JuanJosePerez/evaluaciones_JuanJosePerez/wsgi.py"
     }
   ]
 }
