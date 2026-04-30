@@ -14,7 +14,7 @@ REPO_ROOT = os.path.dirname(BASE_DIR)
 if REPO_ROOT not in sys.path:
     sys.path.append(REPO_ROOT)
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'evaluaciones_JuanJosePerez.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'evaluaciones_JuanJosePerez.evaluaciones_JuanJosePerez.settings')
 
 try:
     application = get_wsgi_application()
